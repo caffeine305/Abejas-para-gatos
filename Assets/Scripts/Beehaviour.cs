@@ -7,15 +7,25 @@ public class Beehaviour : MonoBehaviour
     public float enemySpeed;
     public float randomAngle;
     float cadence;
-    public Rigidbody thisRigidbody;
+    //public Rigidbody thisRigidbody;
     private Vector2 direccion;
+    public ScoreManager scoreManager;
+
+    public int point;
 
     void Start()
     {
         enemySpeed = 8.0f;
         cadence = 0.05f;
         InvokeRepeating("ChangeAngle",0f,cadence);
+
+        GameObject PointsMaganerLoaderobject = GameObject.FindWithTag("ScoreManager");
+        if(PointsMaganerLoaderobject !=  null)
+        {
+            scoreManager = PointsMaganerLoaderobject.GetComponent<ScoreManager>();
+        }
         //thisRigidbody = GetComponent<Rigidbody>();
+        point = 1;
     }
 
     void Update()
@@ -45,11 +55,13 @@ public class Beehaviour : MonoBehaviour
 
             if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
             {
+                scoreManager.UpdatePoints(point);
                 Destroy(this.transform.gameObject);
             }
         }
 
     }
+
 
     void ChangeAngle()
     {
@@ -58,13 +70,13 @@ public class Beehaviour : MonoBehaviour
 
     
     void OnMouseDown()
-    {
-        this.gameObject.SetActive(false);
+    {   
+        scoreManager.UpdatePoints(point);
+        //this.gameObject.SetActive(false);
         //GameManager.instanceGameManager.PointsManager(points);
         //loadSound.destroySound();
-        Destroy(this.gameObject, 1.0f);
-
-    }
+        Destroy(this.gameObject);
+    } 
     
 
 
