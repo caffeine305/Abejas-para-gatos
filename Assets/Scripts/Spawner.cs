@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     private GameObject instance_bee;
      void Awake()
     {
-        cadence = 0.8f;
+        cadence = 0.5f;
         InvokeRepeating("InstanceBees",0f,cadence);
         origen = this.transform;
     }

@@ -6,12 +6,12 @@ public class Rotation : MonoBehaviour
 {
     
 	public float rotationVelocity;
-    public Vector3 rot = Vector3.zero;
+    public Vector2 rot = Vector2.zero;
 
     void Start()
     {
         rotationVelocity = 15.0f;
-        rot.z = 10.0f;
+        rot.y = 10.0f;
     }
 
 
